@@ -1,7 +1,7 @@
 package agus.gamelist.app.model;
 
-import agus.gamelist.authSecurity.models.User;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -12,17 +12,12 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class GameList {
     @Id
     @GeneratedValue
     private Long id;
 
-    @ManyToMany
-    @JoinTable(name = "game_list_list_user",
-            joinColumns = @JoinColumn(name = "game_list_id"),
-            inverseJoinColumns = @JoinColumn(name = "list_user_id")
-    )
-    private List<ListUser> listUsers;
 
     @ManyToMany
     @JoinTable(name = "game_list_game",
@@ -30,6 +25,9 @@ public class GameList {
             inverseJoinColumns = @JoinColumn(name = "game_id")
     )
     private List<Game> games;
+
+    @OneToMany(mappedBy = "gameList")
+    private List<UserGameList> userGameLists;
 
     private String name;
     private String description;
