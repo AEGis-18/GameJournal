@@ -17,12 +17,17 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @NotBlank
-    @Size(max=150)
+    @Size(max = 150)
+    @Column(length = 150,name = "title")
     private String title;
+
     @NotBlank
-    @Size(max=150)
+    @Size(max = 150)
+    @Column(length = 150,name = "slug")
     private String slug;
 
+    @Size(max = 500)
+    @Column(length = 500)
     private String summary;
 
     @ManyToMany
