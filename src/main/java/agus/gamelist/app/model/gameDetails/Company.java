@@ -23,6 +23,6 @@ public class Company {
     @Size(max = 150)
     private String slug;
 
-    @ManyToMany(mappedBy = "companies")
-    private List<Game> games;
+    @OneToMany(mappedBy = "company")
+    private List<GameCompany> gameCompanies;
 }

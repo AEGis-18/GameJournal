@@ -49,12 +49,9 @@ public class Game {
     //private List<Platform> platforms;
     @OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
     private List<ReleaseDate> releaseDates;
-    @ManyToMany
-    @JoinTable(name = "game_company",
-            joinColumns = @JoinColumn(name = "game_id"),
-            inverseJoinColumns = @JoinColumn(name = "company_id")
-    )
-    private List<Company> companies;
+
+    @OneToMany(mappedBy = "game")
+    private List<GameCompany> gameCompanies;
 
     @ManyToMany(mappedBy = "games")
     private List<GameList> gameLists;
