@@ -56,7 +56,7 @@ public class Game {
     @ManyToMany(mappedBy = "games")
     private List<GameList> gameLists;
 
-    //TODO check COVER
-    //private String cover;
+    private String coverUrl;
+    private String coverId;
     //private List<Screenshot> screenshots;
 }
