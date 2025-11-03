@@ -53,8 +53,8 @@ public class Game {
     @OneToMany(mappedBy = "game")
     private List<GameCompany> gameCompanies;
 
-    @ManyToMany(mappedBy = "games")
-    private List<GameList> gameLists;
+    @OneToMany(mappedBy = "game")
+    private List<GameListGame> gameLists;
 
     private String coverUrl;
     private String coverId;

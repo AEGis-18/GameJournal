@@ -18,13 +18,8 @@ public class GameList {
     @GeneratedValue
     private Long id;
 
-
-    @ManyToMany
-    @JoinTable(name = "game_list_game",
-            joinColumns = @JoinColumn(name = "game_list_id"),
-            inverseJoinColumns = @JoinColumn(name = "game_id")
-    )
-    private List<Game> games;
+    @OneToMany(mappedBy = "gameList")
+    private List<GameListGame> games;
 
     @OneToMany(mappedBy = "gameList")
     private List<UserGameList> userGameLists;
