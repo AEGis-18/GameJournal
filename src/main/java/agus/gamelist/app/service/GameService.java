@@ -6,6 +6,7 @@ import agus.gamelist.app.model.Game;
 import agus.gamelist.app.repository.GameRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,10 +14,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class GameService {
-    private GameRepository gameRepository;
+    private final GameRepository gameRepository;
 
     public Optional<GameCoverDTO> getGameCover(Long id) {
         return gameRepository.findById(id)
