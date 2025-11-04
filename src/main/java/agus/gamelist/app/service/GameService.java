@@ -4,14 +4,12 @@ import agus.gamelist.app.dto.GameCoverDTO;
 import agus.gamelist.app.dto.GameCoverMapper;
 import agus.gamelist.app.model.Game;
 import agus.gamelist.app.repository.GameRepository;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -24,9 +22,9 @@ public class GameService {
 
     }
 
-    public List<GameCoverDTO> getAllGamesCovers() {
-        return gameRepository.findAll().stream()
-                .map(GameCoverMapper.INSTANCE::gameToGameCoverDTO)
-                .collect(Collectors.toList());
+    public Page<GameCoverDTO> findAllGamesCovers(Pageable pageable) {
+        Page<Game> page=gameRepository.findAll(pageable);
+
+        return page.map(GameCoverMapper.INSTANCE::gameToGameCoverDTO);
     }
 }

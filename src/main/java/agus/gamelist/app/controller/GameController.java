@@ -1,13 +1,14 @@
 package agus.gamelist.app.controller;
 
-import agus.gamelist.app.repository.GameRepository;
+import agus.gamelist.app.dto.GameCoverDTO;
 import agus.gamelist.app.service.GameService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.http.HttpRequest;
+import org.springframework.data.domain.Pageable;
 
 @RestController
 @RequestMapping("/api/v1/games/")
@@ -17,8 +18,7 @@ public class GameController {
     private final GameService gameService;
 
     @GetMapping(path = "/covers")
-    public ResponseEntity<?> getGamesCovers() {
-        System.out.println("getGamesCovers");
-        return ResponseEntity.ok().body(gameService.getAllGamesCovers());
+    public ResponseEntity<Page<GameCoverDTO>> getGamesCovers(@PageableDefault(size = 10) Pageable pageable){
+        return ResponseEntity.ok().body(gameService.findAllGamesCovers(pageable));
     }
 }

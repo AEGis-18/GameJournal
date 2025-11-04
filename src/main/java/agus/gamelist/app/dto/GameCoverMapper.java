@@ -14,7 +14,6 @@ public interface GameCoverMapper {
     GameCoverMapper INSTANCE = Mappers.getMapper(GameCoverMapper.class);
 
     @Mapping(target = "genres", source = "genres")
-    @Mapping(target = "releaseYear", source = "releaseDate")
     GameCoverDTO gameToGameCoverDTO(Game game);
     Game gameCoverDTOToGame(GameCoverDTO game);
 
