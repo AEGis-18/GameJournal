@@ -1,5 +1,6 @@
 package agus.gamelist.app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +22,7 @@ public class GameList {
     @OneToMany(mappedBy = "gameList")
     private List<GameListGame> games;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "gameList")
     private List<UserGameList> userGameLists;
 
