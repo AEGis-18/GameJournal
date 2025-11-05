@@ -15,13 +15,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "game_list_game")
 public class GameListGame {
-    @Id
+    @EmbeddedId
+    private GameListGameId id;
+
     @ManyToOne
+    @MapsId("game")
     @JoinColumn(name = "game_id")
     private Game game;
 
-    @Id
     @ManyToOne
+    @MapsId("gameList")
     @JoinColumn(name = "game_list_id")
     private GameList gameList;
 

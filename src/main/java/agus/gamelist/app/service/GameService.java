@@ -16,7 +16,7 @@ import java.util.Optional;
 public class GameService {
     private final GameRepository gameRepository;
 
-    public Optional<GameCoverDTO> getGameCover(Long id) {
+    public Optional<GameCoverDTO> findGameCover(Long id) {
         return gameRepository.findById(id)
                 .map(GameCoverMapper.INSTANCE::gameToGameCoverDTO);
 
@@ -26,5 +26,9 @@ public class GameService {
         Page<Game> page=gameRepository.findAll(pageable);
 
         return page.map(GameCoverMapper.INSTANCE::gameToGameCoverDTO);
+    }
+
+    public Optional<Game> findGameById(Long id) {
+        return gameRepository.findById(id);
     }
 }
