@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>agus</groupId>
-    <artifactId>GameList</artifactId>
+    <artifactId>GameJournal</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>GameList</name>
-    <description>GameList</description>
+    <name>GameJournal</name>
+    <description>GameJournal</description>
     <url/>
     <licenses>
         <license/>
