@@ -13,5 +13,5 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class JournalGameId implements Serializable {
    private Long game;
-   private Long Journal;
+   private Long journal;
 }

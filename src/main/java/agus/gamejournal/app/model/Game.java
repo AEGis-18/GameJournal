@@ -1,6 +1,7 @@
 package agus.gamejournal.app.model;
 
 import agus.gamejournal.app.model.gameDetails.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -54,7 +55,7 @@ public class Game {
     private List<GameCompany> gameCompanies;
 
     @OneToMany(mappedBy = "game")
-    private List<JournalGame> Journals;
+    private List<JournalGame> journals;
 
     private String coverUrl;
     private String coverId;

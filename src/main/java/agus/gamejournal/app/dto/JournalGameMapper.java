@@ -1,6 +1,6 @@
 package agus.gamejournal.app.dto;
 
-import agus.gamejournal.app.model.Game;
+import agus.gamejournal.app.model.JournalGame;
 import agus.gamejournal.app.model.gameDetails.Genre;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -10,12 +10,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
-public interface GameCoverMapper {
-    GameCoverMapper INSTANCE = Mappers.getMapper(GameCoverMapper.class);
+public interface JournalGameMapper {
+    JournalGameMapper INSTANCE = Mappers.getMapper(JournalGameMapper.class);
 
-    @Mapping(target = "genres", source = "genres")
-    GameCoverDTO gameToGameCoverDTO(Game game);
-    Game gameCoverDTOToGame(GameCoverDTO game);
+    @Mapping(source="game.genres", target="game.genres")
+    @Mapping(source="journal.id", target="journalId")
+    JournalGameDTO journalGameToJournalGameDTO(JournalGame journalGame);
+    JournalGame journalGameDTOToJournalGame(JournalGameDTO journalGameDTO);
 
     default List<String> mapGenresToGenreNames(List<Genre> genres){
         return genres.stream().map(Genre::getName).collect(Collectors.toList());
@@ -25,4 +26,3 @@ public interface GameCoverMapper {
         return genreNames.stream().map(genreName->Genre.builder().name(genreName).build()).collect(Collectors.toList());
     }
 }
-

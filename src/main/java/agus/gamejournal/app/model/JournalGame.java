@@ -1,5 +1,6 @@
 package agus.gamejournal.app.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -24,7 +25,7 @@ public class JournalGame {
     private Game game;
 
     @ManyToOne
-    @MapsId("Journal")
+    @MapsId("journal")
     @JoinColumn(name = "journal_id")
     private Journal journal;
 

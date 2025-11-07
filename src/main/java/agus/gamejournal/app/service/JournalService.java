@@ -1,6 +1,6 @@
 package agus.gamejournal.app.service;
 
-import agus.gamejournal.app.dto.JournalGameRequest;
+import agus.gamejournal.app.dto.*;
 import agus.gamejournal.app.model.Game;
 import agus.gamejournal.app.model.Journal;
 import agus.gamejournal.app.model.JournalGame;
@@ -19,6 +19,8 @@ public class JournalService {
     private final JournalRepository journalRepository;
     private final GameService gameService;
     private final JournalGameRepository journalGameRepository;
+    private final GameCoverMapper gameCoverMapper;
+    private final JournalGameMapper journalGameMapper;
 
     public Journal createJournal() {
         Journal journal = new Journal();
@@ -33,7 +35,7 @@ public class JournalService {
         return journalRepository.findById(JournalId);
     }
 
-    public JournalGame addGameToJournal(JournalGameRequest JournalGame) {
+    public JournalGameDTO addGameToJournal(JournalGameRequest JournalGame) {
        Game game=
                gameService.findGameById(JournalGame.getGameId()).orElseThrow(()->new RuntimeException("Game not found"));
        Journal journal =
@@ -46,6 +48,8 @@ public class JournalService {
        newJournalGame.setComment(JournalGame.getComment());
        newJournalGame.setScore(JournalGame.getScore());
 
-       return journalGameRepository.save(newJournalGame);
+       JournalGame journalGame=journalGameRepository.save(newJournalGame);
+       return journalGameMapper.journalGameToJournalGameDTO(journalGame);
     }
+
 }
