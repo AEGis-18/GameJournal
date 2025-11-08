@@ -34,22 +34,4 @@ public class JournalService {
     public Optional<Journal> findById(Long JournalId) {
         return journalRepository.findById(JournalId);
     }
-
-    public JournalGameDTO addGameToJournal(JournalGameRequest JournalGame) {
-       Game game=
-               gameService.findGameById(JournalGame.getGameId()).orElseThrow(()->new RuntimeException("Game not found"));
-       Journal journal =
-               journalRepository.findById(JournalGame.getJournalId()).orElseThrow(()->new RuntimeException("Journal not found"));
-       JournalGameId journalGameId =new JournalGameId(game.getId(), journal.getId());
-       JournalGame newJournalGame =new JournalGame();
-       newJournalGame.setId(journalGameId);
-       newJournalGame.setJournal(journal);
-       newJournalGame.setGame(game);
-       newJournalGame.setComment(JournalGame.getComment());
-       newJournalGame.setScore(JournalGame.getScore());
-
-       JournalGame journalGame=journalGameRepository.save(newJournalGame);
-       return journalGameMapper.journalGameToJournalGameDTO(journalGame);
-    }
-
 }
