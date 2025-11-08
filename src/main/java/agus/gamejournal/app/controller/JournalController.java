@@ -5,13 +5,10 @@ import agus.gamejournal.app.dto.JournalGameDTO;
 import agus.gamejournal.app.dto.JournalGameRequest;
 import agus.gamejournal.app.dto.JournalMapper;
 import agus.gamejournal.app.model.Journal;
-import agus.gamejournal.app.model.JournalGame;
 import agus.gamejournal.app.model.UserJournal;
-import agus.gamejournal.app.service.JournalGameService;
 import agus.gamejournal.app.service.JournalService;
 import agus.gamejournal.app.service.GameService;
 import agus.gamejournal.app.service.UserJournalService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class JournalController {
     private final JournalService journalService;
-    private final JournalGameService journalGameService;
     private final GameService gameService;
     private final UserJournalService userJournalService;
 
@@ -50,8 +46,9 @@ public class JournalController {
     }
 
     @DeleteMapping(path = "/delete")
-    public ResponseEntity<?> deleteGame(@RequestBody JournalGameRequest journalGameRequest) {
-        return null;
+    public ResponseEntity<?> deleteGame(@RequestBody Long gameId) {
+
+        return ResponseEntity.notFound().build();
     }
 
 }

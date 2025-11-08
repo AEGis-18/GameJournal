@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 public interface JournalGameMapper {
     JournalGameMapper INSTANCE = Mappers.getMapper(JournalGameMapper.class);
 
+
     @Mapping(source="game.genres", target="game.genres")
-    @Mapping(source="journal.id", target="journalId")
     JournalGameDTO journalGameToJournalGameDTO(JournalGame journalGame);
     JournalGame journalGameDTOToJournalGame(JournalGameDTO journalGameDTO);
 
