@@ -2,6 +2,8 @@ package agus.gamejournal.app.service;
 
 import agus.gamejournal.app.dto.GameCoverDTO;
 import agus.gamejournal.app.dto.GameCoverMapper;
+import agus.gamejournal.app.dto.GameInfoDTO;
+import agus.gamejournal.app.dto.GameInfoMapper;
 import agus.gamejournal.app.model.Game;
 import agus.gamejournal.app.repository.GameRepository;
 import lombok.RequiredArgsConstructor;
@@ -30,5 +32,10 @@ public class GameService {
 
     public Optional<Game> findGameById(Long id) {
         return gameRepository.findById(id);
+    }
+
+    public Optional<GameInfoDTO> findGameBySlug(String slug) {
+        return gameRepository.findBySlug(slug).map(GameInfoMapper.INSTANCE::gameToGameInfoDTO);
+
     }
 }
