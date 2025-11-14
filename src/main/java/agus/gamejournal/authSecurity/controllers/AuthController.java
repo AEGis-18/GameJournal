@@ -25,6 +25,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,6 +45,7 @@ public class AuthController {
     private final PasswordEncoder passwordEncoder;
     private final JwtUtils jwtUtils;
     private final RefreshTokenService refreshTokenService;
+    private final UserDetailsService userDetailsService;
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -86,7 +88,16 @@ public class AuthController {
                     .map(
                             user -> {
                                 String token = jwtUtils.generateTokenFromUsername(user.getUsername());
-                                return ResponseEntity.ok(new TokenRefreshResponse(token));
+                                UserDetailsImpl userDetails=
+                                        (UserDetailsImpl) userDetailsService.loadUserByUsername(user.getUsername());
+                                return ResponseEntity.ok(new JwtResponse(token,
+                                        userDetails.getId(),
+                                        userDetails.getUsername(),
+                                        userDetails.getEmail(),
+                                        userDetails.getAuthorities()
+                                                .stream()
+                                                .map(role -> role.getAuthority())
+                                                .collect(Collectors.toList())));
                             })
                     .orElseThrow(
                             () -> new TokenRefreshException(refreshToken, "Refresh token is not in database!"));
