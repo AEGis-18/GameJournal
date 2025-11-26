@@ -18,7 +18,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1/games/")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:5173", allowedHeaders = "*",
+        allowCredentials = "true", maxAge = 3600)
 public class GameController {
     private final GameService gameService;
 

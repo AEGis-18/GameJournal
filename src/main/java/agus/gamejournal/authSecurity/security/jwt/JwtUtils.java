@@ -62,7 +62,7 @@ public class JwtUtils {
             .from(name, value)
             .path(path)
             .httpOnly(true)
-            .maxAge(jwtRefreshExpirationMs)
+            .maxAge(jwtRefreshExpirationMs/1000)
             .secure(true)
             .sameSite("Strict")
             .build();
@@ -75,7 +75,7 @@ public class JwtUtils {
         ResponseCookie.from(jwtRefreshCookie, null)
                 .path(jwtRefreshCookiePath)
                 .httpOnly(true)
-                .maxAge(jwtRefreshExpirationMs)
+                .maxAge(jwtRefreshExpirationMs/1000)
                 .secure(true)
                 .sameSite("Strict")
                 .build();
