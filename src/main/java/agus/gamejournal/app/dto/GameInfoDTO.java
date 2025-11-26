@@ -15,7 +15,7 @@ public class GameInfoDTO {
    private String title;
    private String summary;
 //   private String coverId;
-   @JsonProperty("cover_url")
+//   @JsonProperty("cover_url")
    private String coverUrl;
    private List<String> genres;
    private List<String> developers;

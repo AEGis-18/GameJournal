@@ -76,11 +76,11 @@ public class AuthController {
                     userDetails.getEmail(), roles));
     }
 
-    @PostMapping("/refreshtoken")
+    @PostMapping("/refresh-token")
     public ResponseEntity<?> refreshToken(HttpServletRequest request) {
         String refreshToken = jwtUtils.getJwtRefreshFromCookie(request);
 
-        if((refreshToken!=null) && (refreshToken.length()>0)) {
+        if((refreshToken!=null) && (!refreshToken.isEmpty())) {
             return refreshTokenService
                     .findByToken(refreshToken)
                     .map(refreshTokenService::verifyExpiration)
@@ -163,7 +163,7 @@ public class AuthController {
         return ResponseEntity.ok(new MessageResponse("User registered " + "successfully!"));
     }
 
-    @PostMapping("/signout")
+    @PostMapping("/sign-out")
     public ResponseEntity<?> logoutUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(principal.toString()!="anonymousUser") {

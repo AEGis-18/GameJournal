@@ -10,6 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GameCoverDTO {
+    private Long id;
     private String slug;
     private String title;
     private String coverUrl;
