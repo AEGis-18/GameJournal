@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  gamejournal:
+    image: game-journal-docker
+    ports:
+      - "8080:8080"
+    environment:
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      JWT_ACCESS_EXPIRATION: ${JWT_ACCESS_EXPIRATION}
+      JWT_REFRESH_EXPIRATION: ${JWT_REFRESH_EXPIRATION}
+      JWT_ACCESS_NAME: ${JWT_ACCESS_NAME}
+      JWT_REFRESH_NAME: ${JWT_REFRESH_NAME}
+      JWT_REFRESH_PATH: ${JWT_REFRESH_PATH}
+      DB_URL: ${DB_URL}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}

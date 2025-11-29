@@ -11,6 +11,8 @@ public class GameJournalApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GameJournalApplication.class, args);
+        String currentDirectory = System.getProperty("user.dir");
+        System.out.println("Current Java Working Directory: " + currentDirectory);
     }
 
     @GetMapping("/health")
