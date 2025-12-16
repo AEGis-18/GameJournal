@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface UserJournalRepository extends JpaRepository<UserJournal, Long> {
     Optional<UserJournal> findByUser(User user);
     Optional<UserJournal> findByUserId(Long userId);
+    boolean existsByUserIdAndJournalId(Long userId, Long journalId);
 }

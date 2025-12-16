@@ -36,7 +36,7 @@ public class UserJournalService {
           return userJournalRepository.save(newUserJournal);
       }
       //TODO check specific exception
-        throw new RuntimeException("User not found with ID: " + userId);
+        throw new RuntimeException("User not found with this ID");
     }
 
     public Optional<Journal> findJournalByUserId(Long userId) {
@@ -45,4 +45,8 @@ public class UserJournalService {
                 .orElse(Optional.empty());
     }
 
+    public Optional<Long> findJournalIdByUserId(Long userId) {
+        return  userJournalRepository.findByUserId(userId)
+                .map(userJournal -> userJournal.getJournal().getId());
+    }
 }
