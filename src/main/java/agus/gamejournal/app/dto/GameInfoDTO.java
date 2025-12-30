@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 public class GameInfoDTO {
    private String slug;
+   private Long id;
    private String title;
    private String summary;
 //   private String coverId;

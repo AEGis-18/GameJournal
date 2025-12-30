@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class JournalGameRequest {
-    @JsonProperty("journal_id")
+//    @JsonProperty("journal_id")
     private Long journalId;
-    @JsonProperty("game_id")
+//    @JsonProperty("game_id")
     private Long gameId;
     private String comment;
     private Integer score;

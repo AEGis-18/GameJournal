@@ -17,9 +17,11 @@ public class SecurityCheck {
     public boolean canAccessJournal(Long journalId) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth == null || !(auth.getPrincipal() instanceof UserDetailsImpl userDetails)) {
+            System.out.println("Not logged in");
             return false;
         }
 
+        System.out.println("Logged in~~~");
         return userJournalRepository.existsByUserIdAndJournalId(userDetails.getId(), journalId);
     }
 }
