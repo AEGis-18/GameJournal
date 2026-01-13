@@ -64,7 +64,7 @@ public class JwtUtils {
             .httpOnly(true)
             .maxAge(jwtRefreshExpirationMs/1000)
             .secure(true)
-            .sameSite("Strict")
+            .sameSite("None")
             .build();
 
     return cookie;
@@ -75,9 +75,9 @@ public class JwtUtils {
         ResponseCookie.from(jwtRefreshCookie, null)
                 .path(jwtRefreshCookiePath)
                 .httpOnly(true)
-                .maxAge(jwtRefreshExpirationMs/1000)
+                .maxAge(0)
                 .secure(true)
-                .sameSite("Strict")
+                .sameSite("None")
                 .build();
 
     return cookie;

@@ -77,10 +77,12 @@ public class WebSecurityConfig {
                     "https://games-journal-client.vercel.app",
                     "https://gamesjournal-client2.onrender.com"));
             config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-            config.setAllowedHeaders(List.of("*"));
+            config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Requested-With"));
             config.setAllowCredentials(true);
+            config.setMaxAge(3600L);
             return config;
         }));
+
         return http.build();
     }
 }

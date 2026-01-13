@@ -21,7 +21,7 @@ public class SecurityCheck {
             return false;
         }
 
-        System.out.println("Logged in~~~");
+//        System.out.println("Logged in~~~");
         return userJournalRepository.existsByUserIdAndJournalId(userDetails.getId(), journalId);
     }
 }
